@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "personal-angular-89617": {
+      "hosting": {
+        "personal-project": [
+          "personal-angular-89617"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "personal-angular-89617"
+  }
+}
