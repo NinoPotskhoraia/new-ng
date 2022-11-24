@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<section class="vh-100 gradient-custom">
+  <div class="container p-5 h-100">
+    <div
+      class="card text-body bg-light mx-auto my-5 p-3"
+      style="max-width: 48rem; min-height: 18rem"
+      *ngIf="auth.userData as user"
+    >
+      <div class="card-header">
+        <h1 class="h2">
+          Hello <strong>{{ fullName | async }}</strong>
+        </h1>
+      </div>
+      <div class="card-body">
+        <p class="card-title">
+          Email: <strong>{{ user.email }}</strong>
+        </p>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">To Do</h5>
+                <div *ngFor="let task of pending | async">
+                  <p class="card-text">{{ task.activity }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Completed</h5>
+                <div *ngFor="let task of completed | async">
+                  <p class="card-text">{{ task.activity }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

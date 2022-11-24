@@ -1,0 +1,106 @@
+<main>
+  <app-header></app-header>
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-xl-10">
+          <div class="card">
+            <div class="card-body p-5">
+              <form
+                class="d-flex justify-content-center align-items-center mb-4"
+              >
+                <div
+                  class="form-outline d-flex flex-fill justify-content-between form-group"
+                >
+                  <input
+                    type="text"
+                    class="form-control formControl"
+                    placeholder="activity"
+                    [ngModelOptions]="{ standalone: true }"
+                    #todo
+                    [(ngModel)]="task"
+                    required
+                  />
+
+                  <button
+                    *ngIf="updating | async; else addMode"
+                    class="btn btn-info ms-2"
+                    (click)="submitUpdated()"
+                  >
+                    <img
+                      src="../../../../../assets/img/icons8-plus-math-30.png"
+                    />
+                  </button>
+
+                  <ng-template #addMode>
+                    <button class="btn btn-info ms-2" (click)="add()">
+                      <img
+                        src="../../../../../assets/img/icons8-plus-math-30.png"
+                      />
+                    </button>
+                  </ng-template>
+                </div>
+              </form>
+
+              <!-- Tabs content -->
+              <div class="tab-content" id="ex1-content">
+                <div
+                  class="tab-pane fade show active"
+                  id="ex1-tabs-1"
+                  role="tabpanel"
+                  aria-labelledby="ex1-tab-1"
+                >
+                  <ul
+                    class="list-group mb-0"
+                    *ngFor="let task of todos | async"
+                  >
+                    <li
+                      [ngClass]="{ checked: task.status }"
+                      class="list-group-item d-flex align-items-center justify-content-between border-0 mb-2 rounded"
+                    >
+                      <div class="task">
+                        <input
+                          class="form-check-input me-2"
+                          type="checkbox"
+                          value=""
+                          aria-label="..."
+                          [(ngModel)]="isChecked"
+                          (change)="checkValue(task.id)"
+                          [ngClass]="{ hide: task.status }"
+                        />
+                        <span [ngClass]="{ done: task.status }">
+                          {{ task.activity }}</span
+                        >
+                      </div>
+                      <div class="d-flex">
+                        <button
+                          [ngClass]="{ complete: task.status }"
+                          class="btn btn-info ms-2"
+                          (click)="delete(task.id)"
+                        >
+                          <img
+                            src="../../../../../assets/img/icons8-remove-30.png"
+                          />
+                        </button>
+                        <button
+                          [ngClass]="{ complete: task.status }"
+                          class="btn btn-info ms-2"
+                          (click)="update(task.id, task.activity)"
+                        >
+                          <img
+                            src="../../../../../assets/img/icons8-pencil-30.png"
+                          />
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Tabs content -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

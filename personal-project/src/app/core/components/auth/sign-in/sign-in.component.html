@@ -1,0 +1,100 @@
+<!-- <div class="displayTable">
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <h3>Sign In</h3>
+      <div class="formGroup">
+        <input
+          type="text"
+          class="formControl"
+          placeholder="Username"
+          #userName
+          required
+        />
+      </div>
+      <div class="formGroup">
+        <input
+          type="password"
+          class="formControl"
+          placeholder="Password"
+          #userPassword
+          required
+        />
+      </div>
+      
+      <div class="formGroup">
+        <input
+          type="button"
+          class="btn btnPrimary"
+          value="Log in"
+          (click)="authService.SignIn(userName.value, userPassword.value)"
+        />
+      </div>
+      <div class="formGroup">
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+    </div>
+    <div class="redirectToLogin">
+      <span>Don't have an account?</span>
+      <span class="redirect" routerLink="register-user">Sign Up</span>
+    </div>
+  </div>
+</div> -->
+
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign in</h3>
+
+            <div class="form-outline mb-4">
+              <input
+                type="email"
+                id="typeEmailX-2"
+                class="form-control form-control-lg"
+                placeholder="Email"
+                #userEmail
+                required
+              />
+              <label class="form-label" for="typeEmailX-2">Email</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input
+                type="password"
+                id="typePasswordX-2"
+                class="form-control form-control-lg"
+                placeholder="Password"
+                #userPassword
+                required
+              />
+              <label class="form-label" for="typePasswordX-2">Password</label>
+            </div>
+
+            <button
+              class="btn btn-info btn-lg btn-block"
+              type="submit"
+              (click)="authService.SignIn(userEmail.value, userPassword.value)"
+            >
+              Login
+            </button>
+
+            <hr class="my-4" />
+            <div class="redirectToRegister">
+              <span>Don't have an account?</span>
+              <span
+                style="cursor: pointer"
+                class="redirect"
+                routerLink="register-user"
+              >
+                <br />
+                Sign Up</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
