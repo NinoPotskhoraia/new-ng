@@ -12,10 +12,11 @@ export class ListComponent implements OnInit {
   todos = new BehaviorSubject([] as any[]);
   ngOnInit(): void {
     this.todos = this.todoService.todos;
+
     this.todoService.getTasks();
   }
 
-  public addTask(value: string) {
+  public addTask(value) {
     if (value) {
       this.todoService.postTask({
         activity: value,
@@ -27,22 +28,22 @@ export class ListComponent implements OnInit {
     }
   }
 
-  public changeStatus(obj) {
-    this.todoService.changeStatus(obj.value, obj.id);
+  public changeStatus(id) {
+    this.todoService.changeStatus(id);
 
     setTimeout(() => {
       this.todoService.getTasks();
     }, 400);
   }
 
-  public deleteTask(id: string) {
+  public deleteTask(id) {
     this.todoService.deleteTask(id);
     setTimeout(() => {
       this.todoService.getTasks();
     }, 400);
   }
 
-  public updateTask(task: string) {
+  public updateTask(task) {
     this.todoService.updateTask(task);
     setTimeout(() => {
       this.todoService.getTasks();

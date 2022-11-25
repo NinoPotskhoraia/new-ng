@@ -22,7 +22,6 @@ export class SignUpComponent implements OnInit {
   namee = new BehaviorSubject('');
   @Output() register = new EventEmitter<Signup>();
 
-  loginModeOn = new BehaviorSubject(false);
   constructor(public authService: AuthService) {}
   regForm = new FormGroup(
     {
@@ -38,7 +37,6 @@ export class SignUpComponent implements OnInit {
   );
 
   ngOnInit(): void {
-    this.loginModeOn = this.authService.loginModeOn;
     this.namee = this.authService.name;
   }
 
@@ -48,7 +46,8 @@ export class SignUpComponent implements OnInit {
   }
 
   public changeMode(): void {
-    this.loginModeOn.next(true);
+    this.authService.loginModeOn.next(true);
+    this.authService.registerModeOn.next(false);
   }
 
   get name() {

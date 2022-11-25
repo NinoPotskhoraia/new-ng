@@ -53,6 +53,7 @@
                 >
                   <ul class="list-group mb-0" *ngFor="let task of tasks">
                     <li
+                      *ngIf="task.activity"
                       [ngClass]="{ checked: task.status }"
                       class="list-group-item d-flex align-items-center justify-content-between border-0 mb-2 rounded"
                     >
@@ -63,7 +64,7 @@
                           value=""
                           aria-label="..."
                           [formControl]="isChecked"
-                          (change)="checkValue(task.id, isChecked.value)"
+                          (change)="checkValue(task.id)"
                           [ngClass]="{ hide: task.status }"
                         />
                         <span [ngClass]="{ done: task.status }">

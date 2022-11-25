@@ -25,8 +25,9 @@ export class TodoService {
   completed = new BehaviorSubject([] as any[]);
   pending = new BehaviorSubject([] as any[]);
   updating = new BehaviorSubject('');
+  status = new BehaviorSubject(false);
 
-  postTask(task: Post) {
+  postTask(task: Send) {
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);
@@ -117,13 +118,13 @@ export class TodoService {
     });
   }
 
-  changeStatus(newValue: string, id: string) {
+  changeStatus(id: string) {
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);
       const db = collection(this.firestore, 'users/' + this.user.uid, 'tasks');
       const dataToUpdate = doc(db, id);
-      const updatedStatus = { status: newValue };
+      const updatedStatus = { status: this.status.value };
       updateDoc(dataToUpdate, updatedStatus)
         .then(() => {
           console.log('data updated');

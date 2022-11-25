@@ -1,9 +1,9 @@
 <app-sign-in
-        *ngIf="loginModeOn | async"
-        (signIn)="onLogin($event)"
-      ></app-login>
+  *ngIf="loginModeOn | async"
+  (signIn)="onLogin($event)"
+></app-sign-in>
 
-      <app-sign-up
-      *ngIf="registerModeOn | async"
-      (register)="signUp($event)"
-    ></app-register>
+<app-sign-up
+  *ngIf="registerModeOn | async"
+  (register)="onRegister($event)"
+></app-sign-up>

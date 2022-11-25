@@ -3,11 +3,14 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5 text-center">
-            <h3 class="mb-5">Sign in</h3>
+          <div class="card-body py-5 px-3 text-center h-100">
+            <h3 class="my-5">Sign in</h3>
 
-            <form [formGroup]="loginForm">
-              <div class="form-outline mb-4">
+            <form
+              [formGroup]="loginForm"
+              class="d-flex flex-column justify-content-between"
+            >
+              <div class="form-outline">
                 <input
                   formControlName="email"
                   type="email"
@@ -17,11 +20,11 @@
                   required
                 />
                 <label class="form-label" for="typeEmailX-2">Email</label>
-                <ng-container *ngIf="email?.invalid && email?.touched">
-                  <p>Please type in valid email address</p>
-                </ng-container>
+                <p *ngIf="email?.invalid && email?.touched">
+                  Please type in valid email address
+                </p>
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline" style="height: 50%">
                 <input
                   formControlName="password"
                   type="password"
@@ -31,21 +34,21 @@
                   required
                 />
                 <label class="form-label" for="typePasswordX-2">Password</label>
-                <ng-container *ngIf="password?.touched && password?.invalid">
-                  <p>Please type in valid password</p>
-                </ng-container>
+                <p *ngIf="password?.touched && password?.invalid">
+                  Please type in valid password
+                </p>
               </div>
-              <button
-                class="btn btn-info btn-lg btn-block"
-                type="submit"
-                (click)="onLogin()"
-                [disabled]="loginForm.invalid"
-              >
-                Login
-              </button>
             </form>
+            <button
+              class="btn btn-info btn-lg btn-block"
+              type="submit"
+              (click)="onLogin()"
+              [disabled]="loginForm.invalid"
+            >
+              Login
+            </button>
 
-            <hr class="my-4" />
+            <hr class="my-2" />
             <div class="redirectToRegister">
               <span>Don't have an account?</span>
               <span

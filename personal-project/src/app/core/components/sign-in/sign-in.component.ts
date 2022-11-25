@@ -18,7 +18,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SignInComponent implements OnInit {
   @Output() signIn = new EventEmitter<Login>();
-  registerModeOn = new BehaviorSubject(false);
   constructor(public authService: AuthService) {}
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,15 +27,14 @@ export class SignInComponent implements OnInit {
     ]),
   });
 
-  ngOnInit(): void {
-    this.registerModeOn = this.authService.registerModeOn;
-  }
+  ngOnInit(): void {}
   public onLogin(): void {
     this.signIn.emit(this.loginForm.getRawValue() as Login);
   }
 
   public changeMode(): void {
-    this.registerModeOn.next(true);
+    this.authService.registerModeOn.next(true);
+    this.authService.loginModeOn.next(false);
   }
 
   get email() {
