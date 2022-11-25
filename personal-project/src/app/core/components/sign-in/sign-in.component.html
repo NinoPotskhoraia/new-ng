@@ -1,0 +1,65 @@
+<section class="vh-100" style="background-color: #508bfc">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign in</h3>
+
+            <form [formGroup]="loginForm">
+              <div class="form-outline mb-4">
+                <input
+                  formControlName="email"
+                  type="email"
+                  id="typeEmailX-2"
+                  class="form-control form-control-lg"
+                  placeholder="Email"
+                  required
+                />
+                <label class="form-label" for="typeEmailX-2">Email</label>
+                <ng-container *ngIf="email?.invalid && email?.touched">
+                  <p>Please type in valid email address</p>
+                </ng-container>
+              </div>
+              <div class="form-outline mb-4">
+                <input
+                  formControlName="password"
+                  type="password"
+                  id="typePasswordX-2"
+                  class="form-control form-control-lg"
+                  placeholder="Password"
+                  required
+                />
+                <label class="form-label" for="typePasswordX-2">Password</label>
+                <ng-container *ngIf="password?.touched && password?.invalid">
+                  <p>Please type in valid password</p>
+                </ng-container>
+              </div>
+              <button
+                class="btn btn-info btn-lg btn-block"
+                type="submit"
+                (click)="onLogin()"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+            </form>
+
+            <hr class="my-4" />
+            <div class="redirectToRegister">
+              <span>Don't have an account?</span>
+              <span
+                style="cursor: pointer"
+                class="redirect"
+                (click)="changeMode()"
+              >
+                <br />
+                Sign Up</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

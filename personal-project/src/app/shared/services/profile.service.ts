@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   providedIn: 'root',
 })
 export class ProfileService {
-  fullName = new BehaviorSubject('');
+  name = new BehaviorSubject('');
   data: any = {};
   user: any = {};
 
@@ -31,8 +31,8 @@ export class ProfileService {
               return { ...item.data() };
             }),
           ];
-          this.fullName.next(this.data[0].fullName);
-          this.fullName = this.auth.fullName;
+          this.name.next(this.data[0].name);
+          this.name = this.auth.name;
           console.log(this.data);
         })
         .catch((err) => console.log(err.message));

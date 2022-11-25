@@ -16,16 +16,14 @@
                     type="text"
                     class="form-control formControl"
                     placeholder="activity"
-                    [ngModelOptions]="{ standalone: true }"
-                    #todo
-                    [(ngModel)]="task"
+                    [formControl]="activity"
                     required
                   />
 
                   <button
                     *ngIf="updating | async; else addMode"
                     class="btn btn-info ms-2"
-                    (click)="submitUpdated()"
+                    (click)="submitUpdated(activity.value)"
                   >
                     <img
                       src="../../../../../assets/img/icons8-plus-math-30.png"
@@ -33,7 +31,10 @@
                   </button>
 
                   <ng-template #addMode>
-                    <button class="btn btn-info ms-2" (click)="add()">
+                    <button
+                      class="btn btn-info ms-2"
+                      (click)="add(activity.value)"
+                    >
                       <img
                         src="../../../../../assets/img/icons8-plus-math-30.png"
                       />
@@ -50,10 +51,7 @@
                   role="tabpanel"
                   aria-labelledby="ex1-tab-1"
                 >
-                  <ul
-                    class="list-group mb-0"
-                    *ngFor="let task of todos | async"
-                  >
+                  <ul class="list-group mb-0" *ngFor="let task of tasks">
                     <li
                       [ngClass]="{ checked: task.status }"
                       class="list-group-item d-flex align-items-center justify-content-between border-0 mb-2 rounded"
@@ -64,8 +62,8 @@
                           type="checkbox"
                           value=""
                           aria-label="..."
-                          [(ngModel)]="isChecked"
-                          (change)="checkValue(task.id)"
+                          [formControl]="isChecked"
+                          (change)="checkValue(task.id, isChecked.value)"
                           [ngClass]="{ hide: task.status }"
                         />
                         <span [ngClass]="{ done: task.status }">

@@ -1,1 +1,8 @@
-<p>list works!</p>
+<app-todo
+  (add)="addTask($event)"
+  (isChecked)="changeStatus($event)"
+  (toDelete)="deleteTask($event)"
+  (toUpdate)="updateTask($event)"
+  [tasks]="todos | async"
+>
+</app-todo>

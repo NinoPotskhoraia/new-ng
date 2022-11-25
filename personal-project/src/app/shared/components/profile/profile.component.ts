@@ -11,7 +11,7 @@ import { ProfileService } from '../../services/profile.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
-  fullName = new BehaviorSubject('');
+  name = new BehaviorSubject('');
   data: any = {};
   user: any = {};
   constructor(
@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileService.getName();
-    this.fullName = this.profileService.fullName;
+    this.name = this.profileService.name;
     this.completed = this.todoService.completed;
     this.pending = this.todoService.pending;
     this.todoService.getCompleted();

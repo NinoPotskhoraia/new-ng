@@ -10,6 +10,8 @@ import {
   getDocs,
 } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { Post } from '../to-dos/interfaces/post';
+import { Send } from '../to-dos/interfaces/send';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +24,9 @@ export class TodoService {
   todos = new BehaviorSubject([] as any[]);
   completed = new BehaviorSubject([] as any[]);
   pending = new BehaviorSubject([] as any[]);
+  updating = new BehaviorSubject('');
 
-  postTask(task: any) {
+  postTask(task: Post) {
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);
@@ -96,7 +99,8 @@ export class TodoService {
     });
   }
 
-  updateTask(newValue, id) {
+  updateTask(newValue: string) {
+    let id = this.updating.value;
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);
@@ -113,7 +117,7 @@ export class TodoService {
     });
   }
 
-  changeStatus(newValue, id) {
+  changeStatus(newValue: string, id: string) {
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);
@@ -130,7 +134,7 @@ export class TodoService {
     });
   }
 
-  deleteTask(id: any) {
+  deleteTask(id: string) {
     this.afAuth.authState.subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.user = JSON.parse(localStorage.getItem('user')!);

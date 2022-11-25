@@ -14,7 +14,9 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 })
 export class AuthService {
   public userData: any = {};
-  fullName = new BehaviorSubject('');
+  name = new BehaviorSubject('');
+  loginModeOn = new BehaviorSubject(true);
+  registerModeOn = new BehaviorSubject(false);
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
@@ -34,9 +36,9 @@ export class AuthService {
     });
   }
 
-  SignIn(email: string, password: string) {
+  SignIn(loginData) {
     return this.afAuth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(loginData.email, loginData.password)
       .then((result) => {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
@@ -51,11 +53,12 @@ export class AuthService {
       });
   }
 
-  SignUp(email: string, password: string) {
+  SignUp(signupData) {
     return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(signupData.email, signupData.password)
       .then((result) => {
         this.SetUserData(result.user);
+        this.loginModeOn.next(true);
         const dbInstance = collection(
           this.firestore,
           `users/${result.user?.uid}`,
@@ -74,7 +77,7 @@ export class AuthService {
           `users/${result.user?.uid}`,
           'name'
         );
-        addDoc(db, { fullName: `${this.fullName.value}` }).then(
+        addDoc(db, { name: `${this.name.value}` }).then(
           () => {
             console.log('data sent');
           },
