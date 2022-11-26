@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+section {
+  min-height: 100vh;
+}
+
+fa-icon {
+  cursor: pointer;
+  padding: 10px;
+}
+
+fa-icon:hover {
+  color: adjust-hue($color: rgb(31, 113, 206), $degrees: 50);
+}

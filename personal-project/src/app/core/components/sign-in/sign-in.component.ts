@@ -8,7 +8,7 @@ import {
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../../interfaces/login';
-import { BehaviorSubject } from 'rxjs';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,6 +18,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SignInComponent implements OnInit {
   @Output() signIn = new EventEmitter<Login>();
+  showPsw = faEye;
+  hidePsw = faEyeSlash;
+  inputType = 'password';
   constructor(public authService: AuthService) {}
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,6 +33,14 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
   public onLogin(): void {
     this.signIn.emit(this.loginForm.getRawValue() as Login);
+  }
+
+  public show(): void {
+    this.inputType = 'text';
+  }
+
+  public hide(): void {
+    this.inputType = 'password';
   }
 
   public changeMode(): void {

@@ -1,0 +1,7 @@
+<app-profile
+  [name]="name | async"
+  [email]="this.auth.userData.email"
+  [completed]="completed | async"
+  [pending]="pending | async"
+>
+</app-profile>

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { TodoService } from 'src/app/features/services/todo.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { ProfileService } from '../../services/profile.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -11,23 +12,12 @@ import { ProfileService } from '../../services/profile.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
-  name = new BehaviorSubject('');
-  data: any = {};
-  user: any = {};
-  constructor(
-    public auth: AuthService,
-    public todoService: TodoService,
-    public profileService: ProfileService
-  ) {}
-  completed = new BehaviorSubject([] as any[]);
-  pending = new BehaviorSubject([] as any[]);
+  @Input() completed = [];
+  @Input() pending = [];
+  @Input() name = '';
+  @Input() email = '';
 
-  ngOnInit(): void {
-    this.profileService.getName();
-    this.name = this.profileService.name;
-    this.completed = this.todoService.completed;
-    this.pending = this.todoService.pending;
-    this.todoService.getCompleted();
-    this.todoService.getPending();
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }

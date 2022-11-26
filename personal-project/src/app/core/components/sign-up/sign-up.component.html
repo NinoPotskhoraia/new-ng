@@ -1,4 +1,4 @@
-<section class="vh-100 gradient-custom">
+<section class="gradient-custom">
   <div class="container vh-100">
     <div class="row justify-content-center align-items-center p-3 vh-100">
       <div class="col-12 col-lg-9 col-xl-7">
@@ -47,22 +47,33 @@
                 <div class="col-md-6">
                   <div class="form-outline">
                     <input
-                      type="password"
                       id="psw"
+                      [type]="inputType"
                       formControlName="password"
                       required
                       class="form-control form-control-lg"
                     />
+
                     <label class="form-label" for="psw">Password</label>
+                    <fa-icon
+                      *ngIf="inputType === 'password'"
+                      (click)="show()"
+                      [icon]="showPsw"
+                    ></fa-icon>
+                    <fa-icon
+                      *ngIf="inputType === 'text'"
+                      (click)="hide()"
+                      [icon]="hidePsw"
+                    ></fa-icon>
                     <p *ngIf="password?.touched && password?.invalid">
-                      Error: Password should contain at least 6 digits
+                      Password should contain at least 6 digits
                     </p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-outline">
                     <input
-                      type="password"
+                      [type]="inputType"
                       id="confirm"
                       formControlName="confirm"
                       class="form-control form-control-lg"
@@ -71,6 +82,16 @@
                     <label class="form-label" for="confirm"
                       >Confirm Password</label
                     >
+                    <fa-icon
+                      *ngIf="inputType === 'password'"
+                      (click)="show()"
+                      [icon]="showPsw"
+                    ></fa-icon>
+                    <fa-icon
+                      *ngIf="inputType === 'text'"
+                      (click)="hide()"
+                      [icon]="hidePsw"
+                    ></fa-icon>
                     <ng-container *ngIf="confirm?.touched && regForm.errors">
                       <p>Passwords don't match, please try again</p>
                     </ng-container>
