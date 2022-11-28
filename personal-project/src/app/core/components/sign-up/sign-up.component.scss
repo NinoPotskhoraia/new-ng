@@ -27,6 +27,29 @@
   top: 13px;
 }
 
-.row {
-  min-height: 150px;
+p {
+  color: red;
+}
+
+a {
+  text-decoration: none;
+}
+
+.disabled {
+  background-color: rgb(198, 196, 196);
+  border: none;
+}
+
+.form-outline {
+  min-height: 90px;
+}
+
+.psw {
+  position: relative;
+}
+
+fa-icon {
+  position: absolute;
+  transform: translate(180%, -100%);
+  min-width: 50px;
 }

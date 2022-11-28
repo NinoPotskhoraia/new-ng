@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TodoService } from 'src/app/features/services/todo.service';
 import { ProfileService } from '../../services/profile.service';
-import { faFilm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-data',
@@ -19,7 +18,6 @@ export class ProfileDataComponent implements OnInit {
   completed = new BehaviorSubject([] as any[]);
   pending = new BehaviorSubject([] as any[]);
   name = new BehaviorSubject('');
-  filmIcon = faFilm;
 
   ngOnInit(): void {
     this.profileService.getName();

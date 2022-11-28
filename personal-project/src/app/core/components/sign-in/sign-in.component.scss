@@ -1,3 +1,49 @@
+p {
+  color: red;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.disabled {
+  background-color: rgb(215, 213, 213);
+  border: none;
+}
+
+form {
+  padding: 0 50px;
+}
+
 .form-outline {
-  min-height: 150px;
+  min-height: 90px;
+}
+
+.psw {
+  position: relative;
+}
+
+fa-icon {
+  position: absolute;
+  transform: translate(250%, -100%);
+  min-width: 50px;
+}
+
+button {
+  margin-top: 20px;
+  width: 100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  fa-icon {
+    transform: translate(220%, -100%);
+  }
+}
+
+@media (max-width: 320px) {
+  fa-icon {
+    transform: translate(80%, -100%);
+  }
 }
