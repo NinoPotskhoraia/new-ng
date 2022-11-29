@@ -1,6 +1,6 @@
 <main>
   <app-header></app-header>
-  <section class="vh-100 gradient-custom">
+  <section class="gradient-custom">
     <div class="container py-5">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-xl-10">
@@ -57,15 +57,21 @@
                       [ngClass]="{ checked: task.status }"
                       class="list-group-item d-flex align-items-center justify-content-between border-0 mb-2 rounded"
                     >
-                      <div class="task">
+                      <div class="checkbox">
                         <input
+                          *ngIf="!task.status"
                           class="form-check-input me-2"
                           type="checkbox"
-                          value=""
-                          aria-label="..."
-                          [formControl]="isChecked"
+                          [formControl]="check"
                           (change)="checkValue(task.id)"
-                          [ngClass]="{ hide: task.status }"
+                        />
+                        <input
+                          *ngIf="task.status"
+                          class="form-check-input me-2"
+                          type="checkbox"
+                          [formControl]="isChecked"
+                          checked
+                          (change)="uncheckValue(task.id)"
                         />
                         <span [ngClass]="{ done: task.status }">
                           {{ task.activity }}</span

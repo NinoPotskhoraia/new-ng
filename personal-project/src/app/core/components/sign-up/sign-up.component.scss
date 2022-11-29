@@ -17,6 +17,10 @@
   );
 }
 
+.big-row {
+  padding-top: 50px;
+}
+
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
   font-size: 1rem;
   line-height: 2.15;
@@ -37,6 +41,7 @@ a {
 
 .disabled {
   background-color: rgb(198, 196, 196);
+  color: black;
   border: none;
 }
 
@@ -52,4 +57,10 @@ fa-icon {
   position: absolute;
   transform: translate(180%, -100%);
   min-width: 50px;
+}
+
+@media (max-width: 768px) {
+  .big-row {
+    padding-top: 0;
+  }
 }

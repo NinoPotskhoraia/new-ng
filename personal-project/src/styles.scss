@@ -1,5 +1,5 @@
 section {
-  min-height: 100vh;
+  height: 90vh;
 }
 
 fa-icon {
@@ -9,12 +9,4 @@ fa-icon {
 
 fa-icon:hover {
   color: adjust-hue($color: rgb(31, 113, 206), $degrees: 50);
-}
-
-a {
-  text-decoration: none;
-}
-
-.disabled {
-  background-color: gray;
 }

@@ -30,7 +30,8 @@ export class TodoComponent implements OnInit {
   constructor(public todoService: TodoService, public auth: AuthService) {}
 
   activity = new FormControl('', Validators.required);
-  isChecked = new FormControl(false);
+  check = new FormControl(false);
+  isChecked = new FormControl(true);
 
   ngOnInit(): void {
     this.updating = this.todoService.updating;
@@ -50,9 +51,15 @@ export class TodoComponent implements OnInit {
   }
 
   public checkValue(id: string) {
-    this.status.next(this.isChecked.value);
+    this.status.next(true);
     this.sendStatus.emit(id);
-    this.isChecked.setValue(false);
+    this.check.setValue(false);
+  }
+
+  public uncheckValue(id: string) {
+    this.status.next(false);
+    this.sendStatus.emit(id);
+    this.isChecked.setValue(true);
   }
 
   public delete(id: string) {
